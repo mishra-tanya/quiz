@@ -61,11 +61,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            height: 90vh;
         }
 
         .card {
-            margin-top: 1%;
+           
             width: 40%;
             border: none; /* Remove card border */
         }
@@ -84,7 +84,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </head>
 
-<body>
+<body>    <?php
+       require "nav.php";?>
+
     <div class="container">
         <div class="card">
 
@@ -111,9 +113,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <span id="passwordError" class="text-danger"></span>
                 </div>
 
-                <button type="submit" class="btn btn-primary m-3">Submit</button>
+                <button type="submit" class="btn btn-dark m-3">SignUp</button>
                 <br>
-                <span class="mx-3">Already have an account <a href="login.php">Login</a> Now</span>
+                <span class="mx-3">Already have an account <a class="text-dark" href="login.php">Login</a> Now</span>
             </form>
         </div>
     </div>

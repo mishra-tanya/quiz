@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 }
 ?>
@@ -48,8 +48,20 @@ if (!isset($_SESSION['user_id'])) {
         require "nav.php";
         ?>
 
+<?php
+require "../config.php";
+$id = $_SESSION['user_id'];
+// Fetch saved questions for the current student
+$sql = "SELECT name 
+        FROM user
+        WHERE id =$id";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc(); // Fetching the data
+$name =  ucwords($row['name']); // Storing the name in a variable
+?>
+
         <div class="container mt-4">
-            <h1>Welcome to Quiz Application</h1>
+            <h1>Welcome, <?= $name;?></h1>
             <p>This application provides a platform for users to participate in quizzes on various topics. Whether
                 you're looking to test your knowledge or prepare for an exam, our quizzes cover a wide range of
                 subjects.</p>

@@ -3,7 +3,7 @@ session_start(); // Start session to store error messages
 
 // Check if the user is already logged in, if yes, redirect to home page
 if (isset($_SESSION['user_id'])) {
-    header("Location: dashboard.php");
+    header("Location: user/dashboard.php");
     exit();
 }
 
@@ -64,19 +64,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            height: 85vh;
         }
 
         .card {
-            margin-top: 1%;
             width: 40%;
             border: none; /* Remove card border */
         }
 
         .btn {
-            width: 90%;
-        }
-
+            width: 94%;
+        } 
         @media screen and (max-width: 768px) {
             .card {
                 width: 90%;
@@ -87,7 +85,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </head>
 
-<body>
+<body>    <?php
+       require "nav.php";?>
+
     <div class="container">
         <div class="card">
 
@@ -108,11 +108,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" class="form-control" name="password" placeholder="Password" required>
                 </div>
                <!-- Add a link/button to initiate password reset -->
-<a href="reset/forgot_password.php" class="m-3" style="text-decoration:none;">Forget Password?</a>
+<a href="reset/forgot_password.php" class="m-3 text-dark" style="text-decoration:none;">Forget Password?</a>
 
-                <button type="submit" class="btn btn-primary m-3">Submit</button>
+                <button type="submit" class="btn btn-dark m-3">Login</button>
                 <br>
-                <span class="mx-3">Don't have an account <a href="signup.php">SignUp</a> Now</span>
+                <span class="mx-3">Don't have an account <a href="signup.php" class="text-dark">SignUp</a> Now</span>
             </form>
         </div>
     </div>
