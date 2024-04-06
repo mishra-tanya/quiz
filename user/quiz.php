@@ -129,6 +129,8 @@ $conn->close();
                             <?php else: ?>
                                 <button class="btn btn-outline-dark" onclick="showSubmit()">Submit</button>
                             <?php endif; ?>
+                            <button class="btn btn-outline-success" onclick="saveQuestion(<?= $question['id'] ?>)">Save</button>
+
                         </div>
                     </div>
                 </div>
@@ -138,6 +140,32 @@ $conn->close();
 <?php
     require "../footer.php";
 ?>
+
+
+<script>
+    function saveQuestion(questionId) {
+        var studentId = <?= $_SESSION['user_id'] ?>;
+        // Send an AJAX request to save the question ID and student ID
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'save_question.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText); // Log the response for debugging
+                var response = JSON.parse(xhr.responseText);
+                console.log(response); // Log the parsed JSON response for debugging
+                if (response.success) {
+                    alert(response.message); // Show success message
+                } else {
+                    alert('Error: ' + response.message); // Show error message
+                }
+            }
+        };
+        xhr.send('questionId=' + questionId + '&studentId=' + studentId);
+    }
+</script>
+
+
     <script>
         var questions = document.querySelectorAll('.card');
         var currentQuestionIndex = 0;
